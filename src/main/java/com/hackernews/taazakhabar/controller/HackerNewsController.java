@@ -1,11 +1,8 @@
 package com.hackernews.taazakhabar.controller;
 
-import com.hackernews.taazakhabar.common.dto.CommentDto;
-import com.hackernews.taazakhabar.common.dto.CommentResponseDto;
-import com.hackernews.taazakhabar.common.dto.StoryDto;
-import com.hackernews.taazakhabar.common.dto.StoryResponseDto;
-import com.hackernews.taazakhabar.domain.Story;
-import com.hackernews.taazakhabar.service.HackerNewsService;
+import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
+import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
+import com.hackernews.taazakhabar.service.api.NewsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +18,11 @@ import java.util.List;
 public class HackerNewsController {
 
     @Autowired
-    private HackerNewsService service;
+    private NewsClient service;
 
     @GetMapping("/top-stories")
     public ResponseEntity<List<StoryResponseDto>> getTopStories(){
-        return new ResponseEntity<List<StoryResponseDto>>(service.getStories(), HttpStatus.OK);
+        return new ResponseEntity<List<StoryResponseDto>>(service.getTopStories(), HttpStatus.OK);
     }
 
     @GetMapping("/past-stories")
@@ -35,7 +32,7 @@ public class HackerNewsController {
 
     @GetMapping("/comments")
     public ResponseEntity<List<CommentResponseDto>> getComments(@RequestParam("id") long storyId){
-        return new ResponseEntity<List<CommentResponseDto>>(service.getComment(storyId), HttpStatus.OK);
+        return new ResponseEntity<List<CommentResponseDto>>(service.getCommentsForStory(storyId), HttpStatus.OK);
     }
 
 }

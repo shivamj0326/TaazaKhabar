@@ -1,4 +1,4 @@
-package com.hackernews.taazakhabar.common.dto;
+package com.hackernews.taazakhabar.common.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

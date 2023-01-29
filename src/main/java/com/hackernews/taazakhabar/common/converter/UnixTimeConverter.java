@@ -1,4 +1,4 @@
-package com.hackernews.taazakhabar.common;
+package com.hackernews.taazakhabar.common.converter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
