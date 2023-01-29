@@ -4,6 +4,7 @@ import com.hackernews.taazakhabar.common.dto.CommentDto;
 import com.hackernews.taazakhabar.common.dto.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.StoryDto;
 import com.hackernews.taazakhabar.common.dto.StoryResponseDto;
+import com.hackernews.taazakhabar.domain.Story;
 import com.hackernews.taazakhabar.service.HackerNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
