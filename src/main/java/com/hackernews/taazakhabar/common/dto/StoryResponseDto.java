@@ -10,7 +10,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import java.time.Instant;
+import java.time.LocalDateTime;
+
+import com.hazelcast.core.HazelcastJsonValue;
 
 @Getter
 @Setter
@@ -20,7 +24,7 @@ public class StoryResponseDto {
     private String title;
     private String url;
     private int score;
-    @JsonSerialize(converter = InstantToStringConverter.class)
-    private Instant submissionTime;
+
+    private LocalDateTime submissionTime;
     private String userHandle;
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "story")
@@ -19,7 +20,7 @@ public class Story {
     private String url;
     private Integer score;
     @Column(name = "submitted_at")
-    private Instant submissionTime;
+    private LocalDateTime submissionTime;
     @Column(name = "submitted_by")
     private String userHandle;
 }

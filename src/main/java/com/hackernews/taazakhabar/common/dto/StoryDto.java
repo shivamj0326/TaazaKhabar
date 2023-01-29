@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -32,7 +33,7 @@ public class StoryDto {
     private int score;
     @JsonProperty(value = "time")
     @JsonDeserialize(converter = UnixTimeConverter.class)
-    private Instant submissionTime;
+    private LocalDateTime submissionTime;
     @JsonProperty(value = "by")
     private String userHandle;
     @JsonProperty(value = "kids")
