@@ -5,8 +5,7 @@ import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 import com.hackernews.taazakhabar.domain.Story;
 import com.hackernews.taazakhabar.domain.StoryRepository;
-import com.hackernews.taazakhabar.service.api.NewsClient;
-import com.hackernews.taazakhabar.service.impl.HackerNewsRestClientImpl;
+import com.hackernews.taazakhabar.service.api.NewsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class HackerNewsService implements NewsClient {
+public class HackerNewsService implements NewsService {
 
     @Autowired
     private StoryRepository storyRepo;
@@ -33,13 +32,13 @@ public class HackerNewsService implements NewsClient {
     private int cacheLiveTime;
 
     @Autowired
-    private HackerNewsRestClientImpl restClient;
+    private HackerNewsRestService hackerNewsRestService;
 
     @Cacheable(value = "topStories")
     @Override
     public List<StoryResponseDto> getTopStories(){
         //System.out.println("Executing not from cache");
-        List<StoryDto> stories = restClient.getTopStories();
+        List<StoryDto> stories = hackerNewsRestService.getTopStories();
         saveInDB(stories);
         return mapToStoryResponse(stories);
     }
@@ -68,6 +67,6 @@ public class HackerNewsService implements NewsClient {
 
     @Override
     public List<CommentResponseDto> getCommentsForStory(Long id) {
-        return restClient.getCommentsForStory(id);
+        return hackerNewsRestService.getCommentsForStory(id);
     }
 }

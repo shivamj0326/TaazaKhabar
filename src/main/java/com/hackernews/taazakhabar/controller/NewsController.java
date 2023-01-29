@@ -2,8 +2,7 @@ package com.hackernews.taazakhabar.controller;
 
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
-import com.hackernews.taazakhabar.service.api.NewsClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hackernews.taazakhabar.service.api.NewsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +14,12 @@ import java.util.List;
 
 @RequestMapping("")
 @RestController
-public class HackerNewsController {
+public class NewsController {
 
-    @Autowired
-    private NewsClient service;
+    private final NewsService service;
+    NewsController(NewsService service){
+        this.service = service;
+    }
 
     @GetMapping("/top-stories")
     public ResponseEntity<List<StoryResponseDto>> getTopStories(){
@@ -31,7 +32,7 @@ public class HackerNewsController {
     }
 
     @GetMapping("/comments")
-    public ResponseEntity<List<CommentResponseDto>> getComments(@RequestParam("id") long storyId){
+    public ResponseEntity<List<CommentResponseDto>> getCommentsForStory(@RequestParam("id") long storyId){
         return new ResponseEntity<List<CommentResponseDto>>(service.getCommentsForStory(storyId), HttpStatus.OK);
     }
 

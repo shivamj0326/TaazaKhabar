@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
 
 @Component
-public class HackerNewsRestClientImpl {
+public class HackerNewsRestService {
 
     @Autowired
     private RestTemplate restTemplate;

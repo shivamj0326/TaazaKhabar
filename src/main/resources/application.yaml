@@ -6,12 +6,17 @@ server:
 taazakhabar:
   client:
     hackernews:
+
       baseuri: https://hacker-news.firebaseio.com/v0
       endpoints:
         topstory: /topstories.json
         item: /item/{id}.json
+
       cache:
         ttl: 15
+
       item:
         limit: 10
+      threads:
+        max-thread: 150
 

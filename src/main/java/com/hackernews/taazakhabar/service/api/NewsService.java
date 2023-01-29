@@ -6,7 +6,7 @@ import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 
 import java.util.List;
 
-public interface NewsClient {
+public interface NewsService {
 
     List<StoryResponseDto> getTopStories();
 
