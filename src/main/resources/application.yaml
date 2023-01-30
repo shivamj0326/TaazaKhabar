@@ -17,6 +17,5 @@ taazakhabar:
 
       item:
         limit: 10
-      threads:
-        max-thread: 150
+
 

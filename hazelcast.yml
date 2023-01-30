@@ -1,0 +1,10 @@
+hazelcast:
+  network:
+    join:
+      multicast:
+        enabled: false
+      tcp-ip:
+        enabled: true
+        members:
+          - app1
+          - app2 
