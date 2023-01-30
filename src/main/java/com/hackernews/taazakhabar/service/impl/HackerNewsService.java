@@ -3,7 +3,6 @@ package com.hackernews.taazakhabar.service.impl;
 import com.hackernews.taazakhabar.common.dto.StoryDto;
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
-import com.hackernews.taazakhabar.domain.Story;
 import com.hackernews.taazakhabar.domain.StoryRepository;
 import com.hackernews.taazakhabar.service.api.NewsService;
 import org.modelmapper.ModelMapper;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,27 +19,37 @@ import java.util.stream.Collectors;
 public class HackerNewsService implements NewsService {
 
     @Autowired
-    private StoryRepository storyRepo;
-
-    @Autowired
     private ModelMapper mapper;
 
-    @Value("${taazakhabar.client.hackernews.item.limit}")
-    private long LIMIT_ITEM = 0l ;
-
-    @Value("${taazakhabar.client.hackernews.cache.ttl:15}")
-    private int cacheLiveTime;
+    @Autowired
+    private HackerNewsRestService restService;
 
     @Autowired
-    private HackerNewsRestService hackerNewsRestService;
+    private HackerNewsDBService dbService;
 
     @Cacheable(value = "topStories")
     @Override
     public List<StoryResponseDto> getTopStories(){
-        //System.out.println("Executing not from cache");
-        List<StoryDto> stories = hackerNewsRestService.getTopStories();
-        saveInDB(stories);
+
+        List<StoryDto> stories = restService.getTopStories();
+        dbService.saveStoriesInDB(stories);
         return mapToStoryResponse(stories);
+    }
+
+    @Override
+    public List<StoryResponseDto> getPastStories(){
+        return dbService.findPastStoriesDB()
+                        .stream()
+                        .map(story -> this.mapper.map(story, StoryResponseDto.class))
+                        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentResponseDto> getCommentsForStory(Long id) {
+        return restService.getCommentsForStory(id)
+                .stream()
+                .map(comment -> this.mapper.map(comment, CommentResponseDto.class))
+                .collect(Collectors.toList());
     }
 
     private List<StoryResponseDto> mapToStoryResponse(List<StoryDto> stories) {
@@ -49,24 +58,4 @@ public class HackerNewsService implements NewsService {
                 .collect(Collectors.toList());
     }
 
-    private void saveInDB(List<StoryDto> stories) {
-        stories.parallelStream()
-                .forEach(story -> this.storyRepo.save(this.mapper.map(story, Story.class)));
-    }
-    @Override
-    public List<StoryResponseDto> getPastStories(){
-        List<StoryResponseDto> stories = new ArrayList<>();
-        findPastStoriesDB(stories);
-        return stories;
-    }
-
-    private void findPastStoriesDB(List<StoryResponseDto> stories) {
-        this.storyRepo.findPastStories(LocalDateTime.now().minusMinutes(cacheLiveTime))
-                      .forEach(story -> stories.add(this.mapper.map(story, StoryResponseDto.class)));
-    }
-
-    @Override
-    public List<CommentResponseDto> getCommentsForStory(Long id) {
-        return hackerNewsRestService.getCommentsForStory(id);
-    }
 }

@@ -21,17 +21,17 @@ public class NewsController {
         this.service = service;
     }
 
-    @GetMapping("/top-stories")
+    @GetMapping(value = "/top-stories", produces = "application/json")
     public ResponseEntity<List<StoryResponseDto>> getTopStories(){
         return new ResponseEntity<List<StoryResponseDto>>(service.getTopStories(), HttpStatus.OK);
     }
 
-    @GetMapping("/past-stories")
+    @GetMapping(value = "/past-stories", produces = "application/json")
     public ResponseEntity<List<StoryResponseDto>> getPastStories(){
         return new ResponseEntity<List<StoryResponseDto>>(service.getPastStories(), HttpStatus.OK);
     }
 
-    @GetMapping("/comments")
+    @GetMapping(value = "/comments", produces = "application/json")
     public ResponseEntity<List<CommentResponseDto>> getCommentsForStory(@RequestParam("id") long storyId){
         return new ResponseEntity<List<CommentResponseDto>>(service.getCommentsForStory(storyId), HttpStatus.OK);
     }

@@ -2,8 +2,6 @@ package com.hackernews.taazakhabar.service.impl;
 
 import com.hackernews.taazakhabar.common.dto.CommentDto;
 import com.hackernews.taazakhabar.common.dto.StoryDto;
-import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,9 +19,6 @@ public class HackerNewsRestService {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    @Autowired
-    private ModelMapper mapper;
     @Autowired
     private Executor executor;
     @Value("${taazakhabar.client.hackernews.endpoints.topstory}")
@@ -43,7 +38,7 @@ public class HackerNewsRestService {
         return fetchStoryMetaData(storyIds);
     }
 
-    public List<CommentResponseDto> getCommentsForStory(Long storyId) {
+    public List<CommentDto> getCommentsForStory(Long storyId) {
         StoryDto story = getStory(storyId);
         List<Long> commentIds = Arrays.asList(story.getCommentIds());
         return fetchCommentsMetaData(commentIds);
@@ -51,6 +46,7 @@ public class HackerNewsRestService {
 
     private List<StoryDto> fetchStoryMetaData(Long[] storyIds) {
         return Arrays.stream(storyIds)
+                .distinct()
                 .map(id ->
                         getCompletableFutureStory(id))
                 .collect(Collectors.collectingAndThen(
@@ -64,8 +60,9 @@ public class HackerNewsRestService {
                 .collect(Collectors.toList());
     }
 
-    private List<CommentResponseDto> fetchCommentsMetaData(List<Long> commentIds) {
+    private List<CommentDto> fetchCommentsMetaData(List<Long> commentIds) {
         return commentIds.stream()
+                .distinct()
                 .map(id ->
                         getCompletableFutureComment(id))
                 .collect(Collectors.collectingAndThen(
@@ -74,7 +71,6 @@ public class HackerNewsRestService {
                                         .map(CompletableFuture::join)
                                         .sorted(getCommentDtoComparator())
                                         .limit(LIMIT_ITEM)
-                                        .map(comment -> this.mapper.map(comment, CommentResponseDto.class))
                 ))
                 .collect(Collectors.toList());
     }
