@@ -3,8 +3,6 @@ package com.hackernews.taazakhabar.controller;
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 import com.hackernews.taazakhabar.service.api.NewsService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

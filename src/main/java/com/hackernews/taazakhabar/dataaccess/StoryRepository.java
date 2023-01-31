@@ -1,4 +1,4 @@
-package com.hackernews.taazakhabar.domain;
+package com.hackernews.taazakhabar.dataaccess;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

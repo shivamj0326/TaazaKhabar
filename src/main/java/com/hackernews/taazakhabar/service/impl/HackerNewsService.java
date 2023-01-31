@@ -4,7 +4,6 @@ import com.hackernews.taazakhabar.common.dto.StoryDto;
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 import com.hackernews.taazakhabar.service.api.NewsService;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;

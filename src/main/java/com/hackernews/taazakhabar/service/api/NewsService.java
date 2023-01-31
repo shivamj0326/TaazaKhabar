@@ -1,13 +1,10 @@
 package com.hackernews.taazakhabar.service.api;
-
-
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 
 import java.util.List;
 
 public interface NewsService {
-
     List<StoryResponseDto> getTopStories();
 
     List<StoryResponseDto> getPastStories();

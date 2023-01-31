@@ -1,9 +1,8 @@
 package com.hackernews.taazakhabar.service.impl;
 
 import com.hackernews.taazakhabar.common.dto.StoryDto;
-import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
-import com.hackernews.taazakhabar.domain.Story;
-import com.hackernews.taazakhabar.domain.StoryRepository;
+import com.hackernews.taazakhabar.dataaccess.Story;
+import com.hackernews.taazakhabar.dataaccess.StoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

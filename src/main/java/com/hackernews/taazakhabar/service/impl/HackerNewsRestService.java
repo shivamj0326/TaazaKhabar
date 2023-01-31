@@ -2,7 +2,7 @@ package com.hackernews.taazakhabar.service.impl;
 
 import com.hackernews.taazakhabar.common.dto.CommentDto;
 import com.hackernews.taazakhabar.common.dto.StoryDto;
-import com.hackernews.taazakhabar.domain.Story;
+import com.hackernews.taazakhabar.dataaccess.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

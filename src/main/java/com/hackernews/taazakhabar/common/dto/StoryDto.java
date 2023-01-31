@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.hackernews.taazakhabar.common.converter.UnixTimeConverter;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 
@@ -17,7 +16,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StoryDto {
-
     @JsonProperty(value = "id")
     private Long id;
     @JsonProperty(value = "title")

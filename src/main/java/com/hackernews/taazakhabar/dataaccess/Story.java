@@ -1,4 +1,4 @@
-package com.hackernews.taazakhabar.domain;
+package com.hackernews.taazakhabar.dataaccess;
 
 import jakarta.persistence.*;
 import lombok.Getter;

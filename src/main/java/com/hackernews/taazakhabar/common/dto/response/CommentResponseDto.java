@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class CommentResponseDto {
-
     private String comment;
     private String userHandle;
 }

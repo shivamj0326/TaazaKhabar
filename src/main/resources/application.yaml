@@ -27,5 +27,7 @@ taazakhabar:
         ttl: 1
       item:
         limit: 10
+#      threads:
+#        max-thread: 10 #Configure no. of threads as per the requirement and infra available
 
 

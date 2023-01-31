@@ -7,8 +7,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.ObjectInputFilter;
-
 @Configuration
 @EnableCaching
 public class CacheConfig {

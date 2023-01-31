@@ -1,13 +1,12 @@
 package com.hackernews.taazakhabar;
 
 import com.hackernews.taazakhabar.common.dto.StoryDto;
-import com.hackernews.taazakhabar.domain.Story;
-import com.hackernews.taazakhabar.domain.StoryRepository;
+import com.hackernews.taazakhabar.dataaccess.Story;
+import com.hackernews.taazakhabar.dataaccess.StoryRepository;
 import com.hackernews.taazakhabar.service.impl.HackerNewsDBService;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
