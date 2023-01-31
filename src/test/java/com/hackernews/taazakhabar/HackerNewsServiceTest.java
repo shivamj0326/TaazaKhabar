@@ -4,6 +4,7 @@ import com.hackernews.taazakhabar.common.dto.CommentDto;
 import com.hackernews.taazakhabar.common.dto.StoryDto;
 import com.hackernews.taazakhabar.common.dto.response.CommentResponseDto;
 import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
+import com.hackernews.taazakhabar.dataaccess.StoryRepository;
 import com.hackernews.taazakhabar.service.impl.HackerNewsDBService;
 import com.hackernews.taazakhabar.service.impl.HackerNewsRestService;
 import com.hackernews.taazakhabar.service.impl.HackerNewsService;
@@ -25,12 +26,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.ProblemDetail;
 
 import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
@@ -52,6 +55,8 @@ public class HackerNewsServiceTest {
     private HackerNewsDBService dbServiceMock;
 
     private ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private StoryRepository storyRepository;
 
     @BeforeEach
     void setup(){
@@ -87,6 +92,19 @@ public class HackerNewsServiceTest {
         assertEquals(10, topComments.size());
         assertTrue(checkCommentsAreEquals(getMockedTopComments(), topComments));
 
+    }
+
+    @Test
+    public void testWhenInvalidStoryIdThenShouldReturnError(){
+        Response response = given()
+                .queryParam("id", "bla")
+                .port(applicationPort)
+                .when()
+                .get("/comments");
+
+        ProblemDetail problemDetail = response.as(ProblemDetail.class);
+        assertEquals(400, problemDetail.getStatus());
+        assertEquals("Invalid Id", problemDetail.getTitle());
     }
 
     @Test
