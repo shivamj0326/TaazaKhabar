@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(access = AccessLevel.PUBLIC)
+@EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class StoryDto {
 

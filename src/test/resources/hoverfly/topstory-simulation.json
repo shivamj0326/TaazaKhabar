@@ -1,0 +1,54 @@
+{
+  "data": {
+    "pairs": [
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/v0/topstories.json"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "glob",
+              "value": "http|https"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "hacker-news.firebaseio.com"
+            }
+          ]
+        },
+        "response": {
+          "status": 200,
+          "body": "[1]",
+          "encodedBody": false,
+          "headers": {
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ]
+          },
+          "templated": false
+        }
+      }
+    ],
+    "globalActions": {
+      "delays": [],
+      "delaysLogNormal": []
+    }
+  },
+  "meta": {
+    "schemaVersion": "v5",
+    "hoverflyVersion": "v0.17.1",
+    "timeExported": "2023-01-30T22:14:24+01:00"
+  }
+}

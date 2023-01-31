@@ -1,0 +1,13 @@
+{
+  "by": "gushogg-blake",
+  "descendants": 27,
+  "id": 1,
+  "kids": [
+    2
+  ],
+  "score": 92,
+  "time": 1675067537,
+  "title": "Over the past 21 months I’ve written a code editor from the ground up",
+  "type": "story",
+  "url": "https://edita.vercel.app/blog/approach/"
+}

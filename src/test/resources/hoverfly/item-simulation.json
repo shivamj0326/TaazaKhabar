@@ -1,0 +1,93 @@
+{
+  "data": {
+    "pairs": [
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/v0/item/1.json"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "glob",
+              "value": "http|https"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "hacker-news.firebaseio.com"
+            }
+          ]
+        },
+        "response": {
+          "status": 200,
+          "body": "{\n  \"by\": \"gushogg-blake\",\n  \"descendants\": 27,\n  \"id\": 1,\n  \"kids\": [\n    2\n  ],\n  \"score\": 92,\n  \"time\": 1675067537,\n  \"title\": \"Over the past 21 months I’ve written a code editor from the ground up\",\n  \"type\": \"story\",\n  \"url\": \"https://edita.vercel.app/blog/approach/\"\n}",
+          "encodedBody": false,
+          "headers": {
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ]
+          },
+          "templated": false
+        }
+      },
+      {
+        "request": {
+          "path": [
+            {
+              "matcher": "exact",
+              "value": "/v0/item/2.json"
+            }
+          ],
+          "method": [
+            {
+              "matcher": "exact",
+              "value": "GET"
+            }
+          ],
+          "scheme": [
+            {
+              "matcher": "glob",
+              "value": "http|https"
+            }
+          ],
+          "destination": [
+            {
+              "matcher": "exact",
+              "value": "hacker-news.firebaseio.com"
+            }
+          ]
+        },
+        "response": {
+          "status": 200,
+          "body": "{\n  \"by\": \"Groxx\",\n  \"id\": 2,\n  \"kids\": [\n    34592412\n  ],\n  \"parent\": 34577246,\n  \"text\": \"Don’t worry,\",\n  \"type\": \"comment\"\n}",
+          "encodedBody": false,
+          "headers": {
+            "Content-Type": [
+              "application/json; charset=utf-8"
+            ]
+          },
+          "templated": false
+        }
+      }
+    ],
+    "globalActions": {
+      "delays": [],
+      "delaysLogNormal": []
+    }
+  },
+  "meta": {
+    "schemaVersion": "v5",
+    "hoverflyVersion": "v0.17.1",
+    "timeExported": "2023-01-30T22:14:24+01:00"
+  }
+}
