@@ -1,4 +1,11 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taazakhabar
+    driverClassName : org.postgres.Driver
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
   application:
     name: taazakhabar
 server:
@@ -6,15 +13,12 @@ server:
 taazakhabar:
   client:
     hackernews:
-
       baseuri: https://hacker-news.firebaseio.com/v0
       endpoints:
         topstory: /topstories.json
         item: /item/{id}.json
-
       cache:
         ttl: 15
-
       item:
         limit: 10
 

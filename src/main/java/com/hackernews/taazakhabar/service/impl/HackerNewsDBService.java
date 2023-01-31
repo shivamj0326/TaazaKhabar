@@ -16,7 +16,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-/** Loads and Saves Stories from/in the DB **/
+/** Loads and Saves Stories from|in the DB **/
 public class HackerNewsDBService {
 
     @Autowired
