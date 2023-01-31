@@ -24,10 +24,10 @@ taazakhabar:
         topstory: /topstories.json
         item: /item/{id}.json
       cache:
-        ttl: 1
+        ttl: 15
       item:
         limit: 10
-#      threads:
+#     threads:
 #        max-thread: 10 #Configure no. of threads as per the requirement and infra available
 
 
