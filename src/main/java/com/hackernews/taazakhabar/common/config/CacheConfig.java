@@ -20,6 +20,8 @@ public class CacheConfig {
     Config config() {
         Config config = new Config();
         config.getMapConfigs().put("topStories", getConfig());
+        config.getMapConfigs().put("topComments", getConfig());
+        config.getMapConfigs().put("pastStories", getConfig());
         return config;
     }
 

@@ -2,12 +2,7 @@ package com.hackernews.taazakhabar.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
-
-import java.time.Instant;
+import lombok.Setter;;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,10 +22,14 @@ public class Story {
 
     @Column(name = "submitted_at")
     private LocalDateTime submissionTime;
-
     @Column(name = "submitted_by")
     private String userHandle;
 
-    @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        setCreatedAt(LocalDateTime.now());
+    }
+
 }

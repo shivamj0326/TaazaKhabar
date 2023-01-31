@@ -34,6 +34,7 @@ public class HackerNewsDBService {
      */
     public void saveStoriesInDB(List<StoryDto> stories) {
         stories.parallelStream()
+                .filter(story -> !this.storyRepo.findById(story.getId()).isPresent())
                 .forEach(story -> this.storyRepo.save(this.mapper.map(story, Story.class)));
         log.debug("Saved stories in DB");
     }
