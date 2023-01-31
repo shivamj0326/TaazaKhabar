@@ -5,12 +5,14 @@ import com.hackernews.taazakhabar.common.dto.response.StoryResponseDto;
 import com.hackernews.taazakhabar.service.api.NewsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("")
@@ -37,9 +39,16 @@ public class NewsController {
     }
 
     @GetMapping(value = "/comments", produces = "application/json")
-    public ResponseEntity<List<CommentResponseDto>> getCommentsForStory(@RequestParam("id") long storyId){
+    public ResponseEntity<List<CommentResponseDto>> getCommentsForStory(@Valid @RequestParam("id") long storyId){
         log.debug("Received Request to fetch Comments for Story {}", storyId);
         return new ResponseEntity<List<CommentResponseDto>>(service.getCommentsForStory(storyId), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    ProblemDetail handleItemNotFoundException(MethodArgumentTypeMismatchException ex, WebRequest request){
+        ProblemDetail body = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(400), ex.getLocalizedMessage());
+        body.setTitle("Invalid Id");
+        return body;
     }
 
 }
